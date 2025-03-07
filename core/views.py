@@ -26,7 +26,9 @@ class MainPageView(CreateView):
         context['masters'] = Master.objects.all()
         context['services'] = Service.objects.all()
 
-        paginator = Paginator(Review.objects.filter(status=1), 2)
+        reviews_objects = Review.objects.filter(status=1).order_by("-rating", "-created_at")
+
+        paginator = Paginator(reviews_objects, 3)
         page_number = self.request.GET.get("page", 1)
         reviews = paginator.get_page(page_number)
 
