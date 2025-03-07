@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Барбершоп "Арбуз"{% endblock %}
+
+{% block content %}
+
+<section class="hero_section">
+    <div class="hero_div">Добро пожаловать в барбершоп "Арбуз"!
+
+        <img src="{% static "images/nav.png" %}" alt="">
+    </div>
+</section>
+
+<section id="masters" class="masters">
+    <h3>Наши мастера:</h3>
+    <div class="master_gallery">
+        {% for master in masters %}
+            <div class="master_card">
+                <div class="bold">{{master.first_name}} {{master.last_name}}</div>
+                <img src="{{master.photo.url}}" alt="">
+                Мастер-барбер
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id='services' class="services">
+    <h3>Наши услуги:</h3>
+    <div class="service_gallery">
+        {% for service in services %}
+            <div class="service_card">
+                <div class="bold">{{service.name}}</div>
+                <div class="service_price">{{service.price}} руб.</div>
+                <div class="service_descr">{{service.description}}</div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id='orderForm' class="service_form">
+    <h3>Записаться на стрижку:</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{field}}
+        {% endfor %}
+        <button type="submit">
+            Записаться
+        </button>
+    </form>
+</section>
+
+{% endblock content %}

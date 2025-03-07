@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Спасибо за заявку{% endblock %}
+{% block content %}
+<div class="thanks">
+  Спасибо за заявку! 
+  Скоро с вами свяжутся.
+
+  <img src="{% static "images/funny_watermelon.jpg" %}" alt="">
+
+  <a class="thanks_a" href="/">Вернуться на главную страницу</a>
+</div>
+{% endblock %}
