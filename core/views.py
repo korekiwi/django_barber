@@ -2,14 +2,16 @@ from django.shortcuts import reverse
 from django.views.generic import TemplateView, CreateView, ListView
 from django.db.models import Q
 
-from core.models import Master, Service, Visit
+from core.models import Master, Service, Visit, Review
 from core.forms import VisitForm, ReviewForm
 
 MENU = [
     {'title': 'Главная', 'url': '/', 'active': True},
-    {'title': 'Мастера', 'url': '#masters', 'active': True},
-    {'title': 'Услуги', 'url': '#services', 'active': True},
-    {'title': 'Запись на стрижку', 'url': '#orderForm', 'active': True},
+    {'title': 'Мастера', 'url': '/#masters', 'active': True},
+    {'title': 'Услуги', 'url': '/#services', 'active': True},
+    {'title': 'Запись на стрижку', 'url': '/#orderForm', 'active': True},
+    {'title': 'Отзывы', 'url': '/#reviews', 'active': True},
+    {'title': 'Оставить отзыв', 'url': '/review', 'active': True},
 ]
 
 
@@ -23,6 +25,7 @@ class MainPageView(CreateView):
         context['menu'] = MENU
         context['masters'] = Master.objects.all()
         context['services'] = Service.objects.all()
+        context['reviews'] = Review.objects.filter(status=1)
         return context
 
     def get_success_url(self):
@@ -36,7 +39,8 @@ class ThanksView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MENU
-        context['thanks_message'] = self.request.session.pop('thanks_message', 'Спасибо за посещение сайта Барбершопа!')
+        context['thanks_message'] = self.request.session.pop('thanks_message',
+                                                             'Спасибо за посещение сайта Барбершопа!')
         return context
 
 

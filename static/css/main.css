@@ -203,3 +203,33 @@ form button {
     border-radius: 10px;
     border: 1px solid white;
 }
+
+.review_gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#reviews {
+    text-align: center;
+}
+
+.review_box {
+    border: 2px solid rgb(38, 93, 23);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    margin: 20px;
+    width: 500px;
+    font-size: 20px;
+}
+
+.review_box span {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 2px;
+}

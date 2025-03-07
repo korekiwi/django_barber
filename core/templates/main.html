@@ -51,4 +51,18 @@
     </form>
 </section>
 
+<section id='reviews'>
+    <h3>Отзывы посетителей:</h3>
+    <div class="review_gallery">
+    {% for review in reviews  %}
+        <div class="review_box">
+            <span>{{review.name}}</span>
+            <p><span>Оценка:</span> {{review.rating}}/5</p>
+            <p><span>Мастер:</span> {{review.master}}</p>
+            <p>{{review.text}}</p>
+        </div>
+    {% endfor %}
+    </div>
+</section>
+
 {% endblock content %}
