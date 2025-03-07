@@ -10,6 +10,7 @@ urlpatterns = (
         path("", views.MainPageView.as_view(), name="main"),
         path("admin/", admin.site.urls),
         path("thanks/", views.ThanksView.as_view(), name="thanks"),
+        path("review/", views.ReviewView.as_view(), name="review"),
         # path("some_page", views.some_page, name="some_page"),
         # path("some_page/", views.SomePage.as_view(), name="some_page"),
     ]

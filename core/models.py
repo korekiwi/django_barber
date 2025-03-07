@@ -75,7 +75,7 @@ class Review(models.Model):
     master = models.ForeignKey('Master', on_delete=models.CASCADE, verbose_name='Мастер')
     rating = models.IntegerField(choices=RAITING_CHOICES, verbose_name='Рейтинг')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name='Статус')
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0, verbose_name='Статус')
 
     def __str__(self):
         return f'Имя: {self.name}. Рейтинг: {self.rating}/5'
