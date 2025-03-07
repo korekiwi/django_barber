@@ -1,6 +1,6 @@
 from django.shortcuts import reverse
 from django.views.generic import TemplateView, CreateView, ListView
-from django.db.models import Q
+from django.core.paginator import Paginator
 
 from core.models import Master, Service, Visit, Review
 from core.forms import VisitForm, ReviewForm
@@ -25,7 +25,13 @@ class MainPageView(CreateView):
         context['menu'] = MENU
         context['masters'] = Master.objects.all()
         context['services'] = Service.objects.all()
-        context['reviews'] = Review.objects.filter(status=1)
+
+        paginator = Paginator(Review.objects.filter(status=1), 2)
+        page_number = self.request.GET.get("page", 1)
+        reviews = paginator.get_page(page_number)
+
+        context['reviews'] = reviews
+
         return context
 
     def get_success_url(self):

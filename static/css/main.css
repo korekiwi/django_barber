@@ -233,3 +233,18 @@ form button {
     font-weight: bold;
     margin: 2px;
 }
+
+.pages {
+    margin: 10px auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.pages a {
+    color: black;
+}
+
+.now_page {
+    text-decoration: underline;
+    font-size: 30px;
+}

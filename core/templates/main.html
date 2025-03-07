@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tags %}
 
 {% block title %}Барбершоп "Арбуз"{% endblock %}
 
@@ -63,6 +64,28 @@
         </div>
     {% endfor %}
     </div>
+    <div class="pages">
+    {% if reviews.has_previous and reviews.previous_page_number > 1 %}
+    <a href="?{% query_transform page=1 %}">1</a> |
+    {% endif %}
+    {% if reviews.has_previous and reviews.previous_page_number > 1|add:1 %}
+        <span>... |</span>
+    {% endif %}
+    {% if reviews.has_previous %}
+        <a href="?{% query_transform page=reviews.previous_page_number %}">{{reviews.previous_page_number}}</a> |
+    {% endif %}
+    <span class="now_page"> {{reviews.number}}</span>
+    {% if reviews.has_next  %}
+    | <a href="?{% query_transform page=reviews.next_page_number %}">{{reviews.next_page_number}}</a>
+    {% endif %}
+    {% if reviews.has_next and reviews.next_page_number < reviews.paginator.num_pages|add:-1 %}
+        <span> | ... </span>
+    {% endif %}
+    {% if reviews.next_page_number != reviews.paginator.num_pages %}
+    | <a href="?{% query_transform page=reviews.paginator.num_pages %}">{{reviews.paginator.num_pages}}</a>
+    {% endif %}
+    {% if page %}{% endif %}
+</div>
 </section>
 
 {% endblock content %}
